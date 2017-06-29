@@ -4,11 +4,22 @@
 
 <h4>Latest Chats:</h4>
 <div class="jumbotron">
+	<div ng-repeat="userInfo in user track by $index" >
+		Welcome, {{ userInfo.name }}
+	</div>
 
-	<form ng-submit="addMessage(newMessage)">
-		<input ng-model="newMessage" type="text" placeholder="Hello!">
+	<form>
+		<input style="width: 40%;" 
+				ng-model="newMessage" 
+				type="text" placeholder="Hello!"
+				value="" onclick='this.value = ""'>
+				<!-- added value and onclick code to clear text input field after typing/submitting -->
+		<button ng-click="addMessage(newMessage)" >Send</button>
 	</form>
 
-	<div ng-repeat="message in messages track by $index">{{ message }}</div>
+	<div ng-repeat="message in messages track by $index">
+	<!-- changed full date time to show 5:02 PM by using angular date filter -->
+	{{ message.message }} : {{message.time | date : "h:mm a"}}
+	</div>
 
 </div>
